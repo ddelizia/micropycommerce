@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <product_option>
+        <id>{{prestashopId}}</id>
+        <is_color_group>{{isColorGroup}}</is_color_group>
+        <group_type>{{groupType}}</group_type>
+        <position>{{position}}</position>
+        <name>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{name}}</language>
+        </name>
+        <public_name>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{publicName}}</language>
+        </public_name>
+    </product_option>
+</prestashop>

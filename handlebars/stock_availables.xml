@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <stock_available>
+        <id>{{stockId}}</id>
+        <id_product xlink:href="{{basepath}}products/{{idProduct}}">{{idProduct}}</id_product>
+        <id_product_attribute>0</id_product_attribute>
+        <id_shop>1</id_shop>
+
+        <quantity>{{quantity}}</quantity>
+        <depends_on_stock>0</depends_on_stock>
+        <out_of_stock>2</out_of_stock>
+    </stock_available>
+</prestashop>

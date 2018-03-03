@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <product_feature>
+        <id>{{prestashopId}}</id>
+        <position>{{position}}</position>
+        <name>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}">{{name}}</language>
+        </name>
+    </product_feature>
+</prestashop>

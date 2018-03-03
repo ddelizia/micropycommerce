@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <manufacturer>
+        {{#if prestashopId}}<id><![CDATA[{{prestashopId}}]]></id>{{/if}}
+        <active><![CDATA[ {{#if active}}{{active}}{{else}}1{{/if}} ]]></active>
+        <name><![CDATA[{{name}}]]></name>
+        <description>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{description}}]]></language>
+        </description>
+        <short_description>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{shortDescription}}]]></language>
+        </short_description>
+        <meta_title>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{metaTitle}}]]></language>
+        </meta_title>
+        <meta_description>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{metaDescription}}]]></language>
+        </meta_description>
+        <meta_keywords>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{metaKeywords}}]]></language>
+        </meta_keywords>
+    </manufacturer>
+</prestashop>

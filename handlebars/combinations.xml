@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <combination>
+        {{#if prestashopId}}
+        <id>{{prestashopId}}</id>
+        {{/if}}
+        <id_product xlink:href="{{basepath}}products/{{productPrestashopId}}">{{productPrestashopId}}</id_product>
+        <location/>
+        <ean13/>
+        <upc/>
+        <quantity>0</quantity>
+        <reference>{{reference}}</reference>
+        <wholesale_price>0.000000</wholesale_price>
+        <price>0.000000</price>
+        <default_on>{{default}}</default_on>
+        <weight>0.000000</weight>
+        <unit_price_impact>0.000000</unit_price_impact>
+        <minimal_quantity>1</minimal_quantity>
+        <available_date>0000-00-00</available_date>
+        <associations>
+            <product_option_values nodeType="product_option_value" api="product_option_values">
+                {{#each options}}
+                <product_option_value xlink:href="{{../basepath}}product_option_values/{{this.optionValueId}}">
+                    <id>{{this.optionValueId}}</id>
+                </product_option_value>
+                {{/each}}
+            </product_option_values>
+            <images nodeType="image" api="images">>
+                {{#each images}}
+                <image xlink:href="{{../basepath}}product_option_values/{{this.id}}">
+                    <id>{{this.id}}</id>
+                </image>
+                {{/each}}
+            </images>
+        </associations>
+    </combination>
+</prestashop>

@@ -1,0 +1,14 @@
+bin
+include
+
+*.pyc
+*iml
+
+report.html
+
+pip-selfcheck.json
+
+*code-workspace
+
+.coverage
+.vscode

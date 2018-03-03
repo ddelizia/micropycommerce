@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <product>
+        {{#if prestashopId}}
+        <id>{{prestashopId}}</id>
+        {{/if}}
+        <id_manufacturer xlink:href="{{basepath}}manufacturers/9">{{manufacturer.id}}</id_manufacturer>
+        <id_category_default xlink:href="{{basepath}}categories/">{{mainCategory.id}}</id_category_default>
+        <new/>
+        <cache_default_attribute><![CDATA[0]]></cache_default_attribute>
+        <id_default_combination notFilterable="true"/>
+        <id_tax_rules_group xlink:href="{{basepath}}tax_rule_groups/1">1</id_tax_rules_group>
+        <type notFilterable="true"><![CDATA[simple]]></type>
+        <reference><![CDATA[{{reference}}]]></reference>
+        <supplier_reference/>
+        <location/>
+        <width>{{width}}</width>
+        <height>{{height}}</height>
+        <depth>{{depth}}</depth>
+        <weight>{{weight}}</weight>
+        {{#if ean13}}
+        <ean13><![CDATA[{{ean13}}]]></ean13>
+        {{/if}}
+        {{#if upc}}
+        <upc><![CDATA[{{upc}}]]></upc>
+        {{/if}}
+        <is_virtual>0</is_virtual>
+        <ecotax>0.000000</ecotax>
+        <minimal_quantity>0</minimal_quantity>
+        <price>{{price}}</price>
+        <wholesale_price>0</wholesale_price>
+        <additional_shipping_cost>0.00</additional_shipping_cost>
+        <customizable>0</customizable>
+        <active>1</active>
+        <redirect_type/>
+        <available_for_order>1</available_for_order>
+        <available_date>2016-01-01</available_date>
+        <condition>new</condition>
+        <show_price>1</show_price>
+        <indexed>1</indexed>
+        <visibility>both</visibility>
+        <advanced_stock_management>0</advanced_stock_management>
+        <pack_stock_type>3</pack_stock_type>
+        <link_rewrite>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{linkRewrite}}]]></language>
+        </link_rewrite>
+        <meta_description>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[]]></language>
+        </meta_description>
+        <meta_keywords>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[]]></language>
+        </meta_keywords>
+        <meta_title>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{metaTitle}}]]></language>
+        </meta_title>
+        <name>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{name}}]]></language>
+        </name>
+        <description>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{description}}]]></language>
+        </description>
+        <description_short>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[{{shortDescription}}]]></language>
+        </description_short>
+        <available_now>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[In Stock]]></language>
+        </available_now>
+        <available_later>
+            <language id="{{language}}" xlink:href="{{basepath}}languages/{{language}}"><![CDATA[In arrivo]]></language>
+        </available_later>
+        <associations>
+            <categories nodeType="category" api="categories">
+                {{#each categories}}
+                <category xlink:href="{{../basepath}}categories/{{this.id}}">
+                    <id>{{this.id}}</id>
+                </category>
+                {{/each}}
+            </categories>
+            <product_features nodeType="product_feature" api="product_features">
+                {{#each features}}
+                <product_feature xlink:href="{{../basepath}}product_features/{{this.feature}}">
+                    <id>{{this.feature}}</id>
+                    <id_feature_value xlink:href="{{../basepath}}product_feature_values/{{this.featureValue}}">{{this.featureValue}}</id_feature_value>
+                </product_feature>
+                {{/each}}
+            </product_features>
+        </associations>
+    </product>
+</prestashop>

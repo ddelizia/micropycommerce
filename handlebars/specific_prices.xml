@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <specific_price>
+        <id>{{id}}</id>
+        <id_product xlink:href="{{basepath}}products/{{idProduct}}">{{idProduct}}</id_product>
+        {{#if idProductAttribute}}
+        <id_product_attribute xlink:href="{{basepath}}product_attributes/{{idProductAttribute}}">{{idProductAttribute}}</id_product_attribute>
+        {{else}}
+        <id_product_attribute>0</id_product_attribute>
+        {{/if}}
+        <price>-1.000000</price>
+        <id_shop_group>0</id_shop_group>
+        <id_shop>0</id_shop>
+        <id_cart>0</id_cart>
+        <id_product_attribute>0</id_product_attribute>
+        <id_currency>0</id_currency>
+        <id_country>0</id_country>
+        <id_group>0</id_group>
+        <id_customer>0</id_customer>
+        <id_specific_price_rule>0</id_specific_price_rule>
+        <from_quantity>1</from_quantity>
+        <reduction>{{discount}}</reduction>
+        <reduction_tax>1</reduction_tax>
+        <reduction_type>percentage</reduction_type>
+        <from>0000-00-00 00:00:00</from>
+        <to>0000-00-00 00:00:00</to>
+    </specific_price>
+</prestashop>

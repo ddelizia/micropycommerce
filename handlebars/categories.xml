@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+    <category>
+        <id>{{prestashopId}}</id>
+        <id_parent xlink:href="{{basepath}}categories/{{parent}}">{{parentId}}</id_parent>
+        <active>{{#if active}}{{active}}{{else}}1{{/if}}</active>
+        <is_root_category>{{#if rootCategory}}{{rootCategory}}{{else}}0{{/if}}</is_root_category>
+        <position/>
+        <date_add/>
+        <date_upd/>
+        <name>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{name}}</language>
+        </name>
+        <link_rewrite>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{linkRewrite}}</language>
+        </link_rewrite>
+        <description>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{description}}</language>
+        </description>
+        <meta_title>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{metaTitle}}</language>
+        </meta_title>
+        <meta_description>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{metaDescription}}</language>
+        </meta_description>
+        <meta_keywords>
+            <language xlink:href="{{basepath}}languages/{{language}}" id="{{language}}">{{metaKeywords}}</language>
+        </meta_keywords>
+    </category>
+</prestashop>
