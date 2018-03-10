@@ -49,12 +49,12 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python -m pytest --cov=ebay --cov=prestashop --cov=utils --cov=shipment --cov=google --cov-report term-missing --html=test-reports/report.html --cov-report html:test-reports --junitxml=test-reports/pytest-report.xml
+            python -m pytest --cov=ebay --cov=prestashop --cov=utils --cov=shipment --cov=google --cov-report term-missing --html=test-reports/report.html --cov-report html:test-reports --junitxml=test-reports/junit/pytest-report.xml
 
       - store_artifacts:
           path: test-reports
           destination: test-reports
-          
+
       - store_test_results:
-          path: test-reports/pytest-report.xml
+          path: test-reports/junit
           
