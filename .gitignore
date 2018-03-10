@@ -19,4 +19,4 @@ venv
 
 .env
 .coverage
-report.html
+test-reports
