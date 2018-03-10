@@ -49,7 +49,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python -m pytest --cov=ebay --cov=prestashop --cov=shipment --cov=google --cov-report term-missing --html=test-reports/report.html --cov-report html:test-reports
+            python -m pytest --cov=ebay --cov=prestashop --cov=utils --cov=shipment --cov=google --cov-report term-missing --html=test-reports/report.html --cov-report html:test-reports
 
       - store_artifacts:
           path: test-reports
