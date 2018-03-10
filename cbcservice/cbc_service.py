@@ -52,7 +52,7 @@ class CbcTypeService(Ws):
         return model
 
     def _build_xml(self, model: munch.Munch):
-        return compile('./handlebars/%s.xml' % (self._resource), model.toDict())
+        return compile('prestashop', '%s.xml' % (self._resource), model.toDict())
 
     def upload_single(self, model: munch.Munch):
         raise NotImplementedError('Method upload_single not implemented')
@@ -61,14 +61,16 @@ class CbcTypeService(Ws):
         return self.create_model(dict)
 
     def delete_all(self):
-        logger.info('Starting deletion all resources of type: %s' % (self._resource))
+        logger.info('Starting deletion all resources of type: %s' %
+                    (self._resource))
         items = self._ps.search(self._resource)
         for item in items:
             self._ps.delete(self._resource, item.id)
         firebase_resources = self._ss.get_items(self._resource)
         for firebase_resource in firebase_resources:
             if not(firebase_resource is None):
-                self._ss.update_prestashop_id(self._resource, firebase_resource.get('id'), None)
+                self._ss.update_prestashop_id(
+                    self._resource, firebase_resource.get('id'), None)
         logger.info('Completed deletion of type: %s' % (self._resource))
 
     def upload(self, items_to_update) -> UploadResult:
@@ -81,10 +83,12 @@ class CbcTypeService(Ws):
                 model = self.transform_from_dict(item)
                 self.upload_single(model)
                 count_ok += 1
-                message = 'Resource [%s] id [%s] Processed correctly' % (self._resource, model.id)
+                message = 'Resource [%s] id [%s] Processed correctly' % (
+                    self._resource, model.id)
                 logger.debug(message)
             except Exception as ex:
-                message = 'Resource [%s] id [%s] Error during processing [%s]' % (self._resource, item.get('id'), ex)
+                message = 'Resource [%s] id [%s] Error during processing [%s]' % (
+                    self._resource, item.get('id'), ex)
                 logger.error(message)
                 count_ko += 1
                 message_result.append(message)
@@ -96,7 +100,8 @@ class CbcTypeService(Ws):
                 self._ss.delete_item_by_id(self._resource, item.get('id'))
                 count_delete += 1
 
-        logger.info('Resource %s: Success %s - Errors %s - Deletions %s' % (self._resource, count_ok, count_ko, count_delete))
+        logger.info('Resource %s: Success %s - Errors %s - Deletions %s' %
+                    (self._resource, count_ok, count_ko, count_delete))
         result = {
             'ok': count_ok,
             'error': {

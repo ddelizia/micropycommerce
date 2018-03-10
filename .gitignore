@@ -12,3 +12,11 @@ pip-selfcheck.json
 
 .coverage
 .vscode
+
+config/*.yml
+
+venv
+
+.env
+.coverage
+report.html

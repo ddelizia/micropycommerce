@@ -42,11 +42,14 @@ class CbcCombinationsService(CbcTypeService):
         if not base.priceNoDiscount:
             base.priceNoDiscount = base.priceWithDiscount
 
-        base.finalPriceNoDiscount = round((base.priceNoDiscount * 0.03) + base.priceNoDiscount, 2)
-        base.finalPriceWithDiscount = round((base.priceWithDiscount * 0.03) + base.priceWithDiscount, 2)
+        base.finalPriceNoDiscount = round(
+            (base.priceNoDiscount * 0.03) + base.priceNoDiscount, 2)
+        base.finalPriceWithDiscount = round(
+            (base.priceWithDiscount * 0.03) + base.priceWithDiscount, 2)
 
         base.discountPrice = base.finalPriceNoDiscount - base.finalPriceWithDiscount
-        base.discountPercentage = round((base.discountPrice / base.finalPriceNoDiscount), 2)
+        base.discountPercentage = round(
+            (base.discountPrice / base.finalPriceNoDiscount), 2)
         base.price = round(base.finalPriceNoDiscount / 1.22, 2)
 
         if base.discountPercentage > 0:
@@ -56,7 +59,8 @@ class CbcCombinationsService(CbcTypeService):
 
         base.productPrestashopId = product_object.get('prestashopId')
         if (base.productPrestashopId is None):
-            raise CombinationsUploadException('Product %s not found' % (base.productPrestashopId))
+            raise CombinationsUploadException(
+                'Product %s not found' % (base.productPrestashopId))
 
         base.options = []
 
@@ -74,13 +78,16 @@ class CbcCombinationsService(CbcTypeService):
         try:
             combination = self.find_by_id_or_reference(model)
             model.prestashopId = combination.id
-            result = self._ps.edit(self._resource, model.prestashopId, self._build_xml(model))
-            logger.info('%s %s has been edited correctly' % (self._resource, self._ps.find_id(result)))
+            result = self._ps.edit(
+                self._resource, model.prestashopId, self._build_xml(model))
+            logger.info('%s %s has been edited correctly' %
+                        (self._resource, self._ps.find_id(result)))
 
         except PrestashopItemNotFoundException as e:
             result = self._ps.add(self._resource, self._build_xml(model))
             model.prestashopId = self._ps.find_id(result)
-            logger.info('%s %s has been created correctly' % (self._resource, self._ps.find_id(result)))
+            logger.info('%s %s has been created correctly' %
+                        (self._resource, self._ps.find_id(result)))
 
         self.update_specific_price(model, result)
 
@@ -88,7 +95,8 @@ class CbcCombinationsService(CbcTypeService):
         images = self._image_service.get_image_for_code(model.reference)
         image_ids = []
         for image in images:
-            image_xml = self._ps.add_image('products', model.prestashopId, model.productPrestashopId, image)
+            image_xml = self._ps.add_image(
+                'products', model.prestashopId, model.productPrestashopId, image)
             image_ids.append({
                 'id': image_xml[0][0].text
             })
@@ -103,7 +111,8 @@ class CbcCombinationsService(CbcTypeService):
 
     def find_by_id_or_reference(self, model: munch.Munch) -> PrestashopSearchElement:
         if (not(model.get('prestashopId') is None)):
-            combination = self._ps.get(self._resource, resource_id=model.prestashopId)
+            combination = self._ps.get(
+                self._resource, resource_id=model.prestashopId)
             return self._ps.build_search_element(combination, self._resource)
         else:
             pass
@@ -132,9 +141,11 @@ class CbcCombinationsService(CbcTypeService):
                     'filter[id_product_attribute]': data.idProductAttribute
                 })
                 data.id = specific_price.id
-                self._ps.edit('specific_prices', data.id, compile('./handlebars/%s.xml' % ('specific_prices'), data.toDict()))
+                self._ps.edit('specific_prices', data.id, compile(
+                    'prestashop', 'specific_prices.xml', data.toDict()))
             except PrestashopItemNotFoundException as ex:
-                self._ps.add('specific_prices', compile('./handlebars/%s.xml' % ('specific_prices'), data.toDict()))
+                self._ps.add('specific_prices', compile(
+                    'prestashop', 'specific_prices.xml', data.toDict()))
 
 
 combinations_service = CbcCombinationsService()
