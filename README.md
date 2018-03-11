@@ -15,7 +15,7 @@ An attempt to connect together multiple systems
 
 ## Webservices
 
-The system exposes a webservice to the url: ``
+The system exposes a graphql endpoints to the url: `/graphql`
 
 ## Configuration
 

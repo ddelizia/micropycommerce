@@ -3,6 +3,7 @@ from utils.ws import run, register_service
 from ebay.schema import QueryEbay
 from prestashop.prestashop_service import QueryPrestashop
 from shipment.schema import QueryShipment
+from google.schema import QueryGoogle
 
 from cbcservice.cbc_categories_service import category_service
 from cbcservice.cbc_manufacturers_service import manufacturers_service
@@ -19,6 +20,7 @@ class Query(
         QueryEbay,
         QueryPrestashop,
         QueryShipment,
+        QueryGoogle,
         graphene.ObjectType):
     pass
 
