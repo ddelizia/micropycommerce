@@ -11,6 +11,10 @@ cryptography==2.1.4
 ebaysdk==2.1.5
 flake8==3.5.0
 Flask==0.12.2
+Flask-GraphQL==1.4.1
+graphene==2.0.1
+graphql-core==2.0
+graphql-relay==0.4.5
 idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
@@ -20,6 +24,7 @@ mccabe==0.6.1
 munch==2.2.0
 pep8==1.7.1
 pluggy==0.6.0
+promise==2.1
 py==1.5.2
 pyAesCrypt==0.3
 pybars3==0.9.3
@@ -34,6 +39,8 @@ pytest-metadata==1.6.0
 python-firebase==1.2
 PyYAML==3.12
 requests==2.18.4
+Rx==1.6.1
 six==1.11.0
+typing==3.6.4
 urllib3==1.22
 Werkzeug==0.14.1
