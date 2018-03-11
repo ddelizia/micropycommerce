@@ -3,6 +3,9 @@ from flask import Flask, jsonify, request, Response
 from utils.config import get_config
 from utils.log import get_logger
 from functools import wraps
+import graphene
+from flask_graphql import GraphQLView
+
 
 app = Flask(__name__)
 logger = get_logger(__name__)
@@ -46,7 +49,8 @@ class Ws:
 
 def register_service(service: Ws):
     if not(ws_registrator.get(service.name) is None):
-            logger.error("Service [%s] cannot be registered because there is already a service with the same name")
+        logger.error(
+            "Service [%s] cannot be registered because there is already a service with the same name")
     else:
         logger.info('Registering ws [%s]' % (service.name))
         ws_registrator[service.name] = service
@@ -109,7 +113,11 @@ def not_found(e):
     return 'An internal error occurred.', 404
 
 
-def run():
+def run(query=None, mutation=None):
     port = get_config()['ws']['port']
     logger.info("Starting webservices on port [%s]" % (port))
+    if not(query is None):
+        schema = graphene.Schema(query=query, mutation=mutation)
+        app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql',
+                                                                   schema=schema, graphiql=True))
     app.run(port=port)

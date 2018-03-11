@@ -1,5 +1,4 @@
 from ebaysdk.trading import Connection as Trading
-from utils.ws import Ws
 from utils.config import get_config
 from utils.log import get_logger
 
@@ -7,7 +6,7 @@ from utils.log import get_logger
 logger = get_logger(__name__)
 
 
-class EbayService(Ws):
+class EbayService:
 
     """
     0	eBay United States	EBAY-US
@@ -35,10 +34,10 @@ class EbayService(Ws):
     """
 
     # Example from https://github.com/timotheus/ebaysdk-python/blob/master/samples/trading.py
-    def __init__(self, service_name):
-        super().__init__('ebay_%s' % (service_name))
+    def __init__(self):
         self._ebay_conf = get_config()['ebay']
-        logger.debug('Loading ebay configuration for ebay [%s]' % (self._ebay_conf))
+        logger.debug('Loading ebay configuration for domain %s' %
+                     (self._ebay_conf.get('domain')))
         self._api = Trading(
             debug=self._ebay_conf['debug'],
             config_file=None,

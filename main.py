@@ -1,18 +1,26 @@
+import graphene
 from utils.ws import run, register_service
+from ebay.schema import QueryEbay
+from prestashop.prestashop_service import QueryPrestashop
+from shipment.schema import QueryShipment
+
 from cbcservice.cbc_categories_service import category_service
 from cbcservice.cbc_manufacturers_service import manufacturers_service
 from cbcservice.cbc_products_service import products_service
 from cbcservice.cbc_combinations_service import combinations_service
-from shipment.shipment_calculator import shipment_calculator
-from ebay.ebay_service_category import ebay_service_category
-from prestashop.prestashop_service_product import prestashop_product
 
 register_service(category_service)
 register_service(manufacturers_service)
 register_service(products_service)
 register_service(combinations_service)
-register_service(shipment_calculator)
-register_service(ebay_service_category)
-register_service(prestashop_product)
 
-run()
+
+class Query(
+        QueryEbay,
+        QueryPrestashop,
+        QueryShipment,
+        graphene.ObjectType):
+    pass
+
+
+run(Query)

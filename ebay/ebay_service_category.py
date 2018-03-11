@@ -8,15 +8,9 @@ logger = get_logger(__name__)
 class EbayServiceCategory(EbayService):
 
     def __init__(self):
-        super().__init__('category')
+        super().__init__()
 
-    def request_with_body(self, body):
-        return self.categories(body.get('id'))
-
-    def request_no_body(self):
-        return self.categories()
-
-    def categories(self, parent_id=None):
+    def categories(self, parent_id: str=None):
         callData = {
             'DetailLevel': 'ReturnAll',
             'CategorySiteID': 101,
@@ -50,7 +44,8 @@ class EbayServiceCategory(EbayService):
                 logger.error('No Category Level defined for [%s]' % (category))
             category_level = int(category.CategoryLevel)
             for i in range(category_level - first_level):
-                parent_id = category_current[len(category_current) - 1].get('CategoryParentID')
+                parent_id = category_current[len(
+                    category_current) - 1].get('CategoryParentID')
                 cat_by_id = category_ids.get(parent_id)
                 category_current.append(self.ebayobject_to_dict(cat_by_id))
             # category_current.append(self.object_to_dict(category_ids.get(parent_id)))
@@ -60,7 +55,8 @@ class EbayServiceCategory(EbayService):
                 if i == 0:
                     category_path = cat.get('CategoryName')
                 else:
-                    category_path = category_path + " > " + cat.get('CategoryName')
+                    category_path = category_path + \
+                        " > " + cat.get('CategoryName')
             category_result.append({
                 'categoryResult': reverse_category,
                 'categoryPath': category_path

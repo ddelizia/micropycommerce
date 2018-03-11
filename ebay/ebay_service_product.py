@@ -8,11 +8,8 @@ logger = get_logger(__name__)
 class EbayServiceProduct(EbayService):
 
     def __init__(self):
-        super().__init__('product')
+        super().__init__()
         self._ps_product = prestashop_product
-
-    def request_with_body(self, body):
-        return self.categories(body.get('id'))
 
     def add_product(self, product_code):
         prod = self._ps_product.get_product(product_code)
@@ -138,4 +135,3 @@ class EbayServiceProduct(EbayService):
 
 
 ebay_service_product = EbayServiceProduct()
-logger.info('Ebay service [product] started')
