@@ -37,7 +37,7 @@ pytest-cov==2.5.1
 pytest-html==1.16.1
 pytest-metadata==1.6.0
 python-firebase==1.2
-PyYAML==3.12
+PyYAML==5.4
 requests==2.18.4
 Rx==1.6.1
 six==1.11.0
